@@ -81,6 +81,7 @@
     self.textField.text = self.item.value;
     self.textField.placeholder = self.item.placeholder;
     self.textField.font = [UIFont systemFontOfSize:17];
+    self.textField.textAlignment = NSTextAlignmentRight;
     self.textField.autocapitalizationType = self.item.autocapitalizationType;
     self.textField.autocorrectionType = self.item.autocorrectionType;
     self.textField.spellCheckingType = self.item.spellCheckingType;
@@ -95,6 +96,10 @@
     self.actionBar.barStyle = self.item.keyboardAppearance == UIKeyboardAppearanceAlert ? UIBarStyleBlack : UIBarStyleDefault;
     
     self.enabled = self.item.enabled;
+    
+    for (NSString *keyPath in self.item.cellConfigAtConfigure.allKeys) {
+        [self setValue:self.item.cellConfigAtConfigure[keyPath] forKeyPath:keyPath];
+    }
 }
 
 - (UIResponder *)responder

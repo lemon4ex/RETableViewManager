@@ -55,6 +55,7 @@
 @property (copy, readwrite, nonatomic) void (^pasteHandler)(id item);
 @property (assign, readwrite, nonatomic) CGFloat cellHeight;
 @property (copy, readwrite, nonatomic) NSString *cellIdentifier;
+@property (copy, readwrite, nonatomic) NSDictionary *cellConfigAtConfigure;
 
 // Action bar
 @property (copy, readwrite, nonatomic) void (^actionBarNavButtonTapHandler)(id item); //handler for nav button on ActionBar
