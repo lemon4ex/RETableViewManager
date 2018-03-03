@@ -62,7 +62,8 @@
 - (UIImage *)expiredRibbonImage
 {
     if (!_expiredRibbonImage) {
-        _expiredRibbonImage = [UIImage imageNamed:@"Ribbon_Expired" inBundle:[NSBundle RETableViewManagerBundle] compatibleWithTraitCollection:nil];
+        NSString *path = [[NSBundle RETableViewManagerBundle] pathForResource:@"Ribbon_Expired" ofType:nil];
+        _expiredRibbonImage = [UIImage imageWithContentsOfFile:path];
     }
     return _expiredRibbonImage;
 }

@@ -122,17 +122,20 @@ static inline RECreditCardType RECreditCardTypeFromNumber(NSString *creditCardNu
     [self.contentView addSubview:self.creditCardImageViewContainer];
     
     self.creditCardStackImageView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, 32, 32)];
-    self.creditCardStackImageView.image = [UIImage imageNamed:creditCardTypeImage[RECreditCardTypeUnknown] inBundle:[NSBundle RETableViewManagerBundle] compatibleWithTraitCollection:nil];
+    NSString *path = [[NSBundle RETableViewManagerBundle] pathForResource:creditCardTypeImage[RECreditCardTypeUnknown] ofType:nil];
+    self.creditCardStackImageView.image = [UIImage imageWithContentsOfFile:path];
     self.creditCardStackImageView.tag = 0;
     self.currentImageView = self.creditCardStackImageView;
     [self.creditCardImageViewContainer addSubview:self.creditCardStackImageView];
     
     self.creditCardImageView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, 32, 32)];
-    self.creditCardImageView.image = [UIImage imageNamed:creditCardTypeImage[RECreditCardTypeVisa] inBundle:[NSBundle RETableViewManagerBundle] compatibleWithTraitCollection:nil];
+    path = [[NSBundle RETableViewManagerBundle] pathForResource:creditCardTypeImage[RECreditCardTypeVisa] ofType:nil];
+    self.creditCardImageView.image = [UIImage imageWithContentsOfFile:path];
     self.creditCardImageView.tag = 1;
     
     self.creditCardBackImageView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, 32, 32)];
-    self.creditCardBackImageView.image = [UIImage imageNamed:@"Card_Back" inBundle:[NSBundle RETableViewManagerBundle] compatibleWithTraitCollection:nil];
+    path = [[NSBundle RETableViewManagerBundle] pathForResource:@"Card_Back" ofType:nil];
+    self.creditCardBackImageView.image = [UIImage imageWithContentsOfFile:path];
     self.creditCardBackImageView.tag = 2;
     
     self.wrapperView = [[UIView alloc] initWithFrame:CGRectMake(UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPhone ? 60 : 60 + self.textFieldPositionOffset.width, self.textFieldPositionOffset.height, self.frame.size.width - 70, self.frame.size.height)];
@@ -214,7 +217,8 @@ static inline RECreditCardType RECreditCardTypeFromNumber(NSString *creditCardNu
     self.ribbonExpired.hidden = !RECreditCardExpired(self.expirationDateField.text);
 
     if (self.item.creditCardType != RECreditCardTypeUnknown ) {
-        self.creditCardImageView.image = [UIImage imageNamed:creditCardTypeImage[self.item.creditCardType] inBundle:[NSBundle RETableViewManagerBundle] compatibleWithTraitCollection:nil];
+        NSString *path = [[NSBundle RETableViewManagerBundle] pathForResource:creditCardTypeImage[self.item.creditCardType] ofType:nil];
+        self.creditCardImageView.image = [UIImage imageWithContentsOfFile:path];
         [UIView transitionFromView:self.creditCardStackImageView toView:self.creditCardImageView duration:0.4 options:UIViewAnimationOptionTransitionFlipFromLeft completion:nil];
         self.currentImageView = self.creditCardImageView;
     }
@@ -329,7 +333,8 @@ static inline RECreditCardType RECreditCardTypeFromNumber(NSString *creditCardNu
         self.item.creditCardType = cardType;
         
         if (cardType != RECreditCardTypeUnknown) {
-            self.creditCardImageView.image = [UIImage imageNamed:creditCardTypeImage[cardType] inBundle:[NSBundle RETableViewManagerBundle] compatibleWithTraitCollection:nil];
+            NSString *path = [[NSBundle RETableViewManagerBundle] pathForResource:creditCardTypeImage[cardType] ofType:nil];
+            self.creditCardImageView.image = [UIImage imageWithContentsOfFile:path];
             [UIView transitionFromView:self.creditCardStackImageView toView:self.creditCardImageView duration:0.4 options:UIViewAnimationOptionTransitionFlipFromLeft completion:nil];
             self.currentImageView = self.creditCardImageView;
         } else {
